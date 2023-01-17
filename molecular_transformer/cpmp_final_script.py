@@ -777,12 +777,12 @@ def infer(fname, fold, input_dir, output_dir, split_path, infer_dir, cuda_device
     testdev_idx = split_dict['test-dev'] # pytorch tensor storing indices of test-dev molecules
     testchallenge_idx = split_dict['test-challenge'] # pytorch tensor storing indices of test-challenge molecules
     
-    #new_split_dict = torch.load(split_path)
+    new_split_dict = torch.load(split_path)
     
     for fold in ['valid', 0, 1, 2, 3]:
         if fold in [0, 1, 2, 3]:
-            #valid_idx = new_split_dict['valid_%d' % fold]
-            valid_idx = split_dict['valid_%d' % CONFIG['fold']']
+            valid_idx = new_split_dict['valid_%d' % fold]
+            #valid_idx = split_dict['valid_%d' % CONFIG['fold']']
             fname_fold = fname + ('_%d' % fold)
             dirname = fname + ('_fold%d' % fold)
         else:
